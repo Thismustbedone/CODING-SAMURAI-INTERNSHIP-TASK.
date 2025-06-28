@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - MyBlog{% endblock %}
+{% block content %}
+  <h2>Your Posts</h2>
+  <a class="btn" href="{{ url_for('create') }}">+ New Post</a>
+  {% for post in posts %}
+    <div class="post-card dashboard">
+      <h3>{{ post.title }}</h3>
+      <div class="post-meta">{{ post.date.strftime('%b %d, %Y') }}</div>
+      <div class="post-actions">
+        <a class="btn small" href="{{ url_for('edit', id=post.id) }}">Edit</a>
+        <a class="btn small danger" href="{{ url_for('delete', id=post.id) }}" onclick="return confirm('Delete this post?');">Delete</a>
+      </div>
+    </div>
+  {% else %}
+    <p>You haven't written any posts yet.</p>
+  {% endfor %}
+{% endblock %}

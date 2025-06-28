@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Welcome to MyBlog{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero">
+    <h1>Create your story</h1>
+    <p>Start publishing your ideas today — it's fast, free and beautiful.</p>
+    <a href="{{ url_for('register') }}" class="btn">Create Your Blog</a>
+</div>
+
+</section>
+
+<section class="post-grid">
+  {% for post in posts %}
+  <div class="post-card fancy">
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.content[:120] }}...</p>
+    <div class="post-meta">By {{ post.author.username }} • {{ post.date.strftime('%b %d, %Y') }}</div>
+  </div>
+  {% else %}
+  <p>No posts yet!</p>
+  {% endfor %}
+</section>
+{% endblock %}
